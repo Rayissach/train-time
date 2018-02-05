@@ -23,7 +23,7 @@ $(document).ready(function() {
 
     name = $("#trainName").val().trim();
     destination = $("#trainDestination").val().trim();
-    time = $("#trainInterval").val().trim();
+    time = $("#startTime").val().trim();
     frequency = $("#trainInterval").val().trim();
 
     database.ref().push({
@@ -41,6 +41,11 @@ $(document).ready(function() {
     console.log(snapshot.val().destination);
     console.log(snapshot.val().time);
     console.log(snaspshot.val().frequency);
+
+    $("#trainName").text(snapshot.val().name);
+    $("#trainDestination").text(snapshot.val().destination);
+    $("#startTime").text(snapshot.val().time);
+    $("#trainInterval").text(snaspshot.val().frequency);
 
     $("#input").append("<td>" + snapshot.val().name + "</td>" +
 "<td>" + snapshot.val().destination + "</td>" +
