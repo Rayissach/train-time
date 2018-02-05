@@ -46,4 +46,6 @@ $(document).ready(function() {
 "<td>" + snapshot.val().destination + "</td>" +
 "<td>" + snapshot.val().time + "</td>" + "<td>" + snapshot.val().frequency + "</td>") 
   })
+
+moment("#startTime").format('HH, mm');
 });
