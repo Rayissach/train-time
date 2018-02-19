@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  // var queryURL = "http://transportapi.com/v3/us/places.json?query=euston&type=train_station&app_id=YOUR_APP_ID&app_key=70f975a928310d6f5167e5f4a255939e"
+
     var config = {
         apiKey: "AIzaSyDi20WZXWiBqQAuLmSM-V0moDZ6mso27LU",
         authDomain: "fir-time-3ee33.firebaseapp.com",
@@ -13,25 +15,21 @@ $(document).ready(function() {
 
     var database = firebase.database();
 
-    // var name = "";
-    // var destination = "";
-    // var time = 0;
-    // var frequency = "";
-
     $("#btns-add").on("click", function(event) {
         event.preventDefault();
+        // var randomTime = "04:45"
+        // randomFormat = "HH:mm"
 
         var name = $("#train-name").val().trim();
         var destination = $("#train-destination").val().trim();
-        // var time = moment($("#train-time") val().trim(), "DD/MM/YY").format("X");
-        var frequency = $("#train-interval").val().trim();
-
+        // var time = moment($("#train-time").val().trim(), "DD/MM/YY").format("X");
+        var frequency = moment($("#train-interval").val().trim()).startOf('hour').fromNow(); 
 
         database.ref().push({
 
             name: name,
             destination: destination,
-            // time: time,
+            time: time,
             frequency: frequency,
             dateAdded: firebase.database.ServerValue.TIMESTAMP
         });
@@ -55,7 +53,8 @@ $(document).ready(function() {
         console.log(time);
         console.log(frequency);
 
-        var startTime = moment.unix(time).format("MM/DD/YY");
+        // var startTime = moment.unix(time).format("MM/DD/YY");
+        // var nextArrival = moment(randomDate).format("HH:mm");
 
         $("#stationTable > tbody").append(
             "<tr><td>" +
@@ -65,45 +64,12 @@ $(document).ready(function() {
             cd.destination +
             "</td>" +
             "<td>" + 
-            cd.startDate + 
+            cd.frequency + 
             "</td>" + 
             "<td>" + 
-            cd.frequency + 
+            cd.nextArrival+ 
             "</td></tr>")
 
+
     });
-
-    // database.ref().orderByChild("dateAdded").on("child_added", function(snapshot) {
-
-    //     console.log(snapshot.val());
-    //     console.log(snapshot.val().name);
-    //     console.log(snapshot.val().destination);
-    //     console.log(snapshot.val().time);
-    //     console.log(snapshot.val().frequency);
-
-    //     $("#train-name").html("<td>" + snapshot.val().name + "</td>");
-    //     $("#train-destination").html("<td>" + snapshot.val().destination + "</td>");
-    //     $("#start-time").text(snapshot.val().time);
-    //     $("#train-intereval").text(snapshot.val().frequency);
-
-    //     "<td>" + snapshot.val().name + "</td>"
-
-    // }, function(errorObject) {
-    //     console.log("Errors handled: " + errorObject.code);
-    // });
 });
-
-// $("#trainName").append(snapshot.val().name);
-// console.log("hello");
-
-// "<td>" + snapshot.val().destination + "</td>" +
-// "<td>" + snapshot.val().time + "</td>" + "<td>" + snapshot.val().frequency + "</td>" 
-// },  
-// function(errorObject) {
-
-//     console.log("Errors handled: " + errorObject.code);
-
-//   };
-// });
-
-// moment("#startTime").format('HH, mm');
