@@ -1,0 +1,26 @@
+body {
+	background: url("https://images.unsplash.com/photo-1494253188410-ff0cdea5499e?ixlib=rb-0.3.5&s=08682dff9ee9ebfe02e29fc2c3cbae3b&auto=format&fit=crop&w=3150&q=80");
+	background-size: cover;
+
+}
+
+.panel
+ {
+	background: lightgrey;
+	opacity: 0.8;
+}
+
+.jumbotron {
+	background: #eee0;
+		
+}
+
+.tText {
+		color: #fffcfcb0;
+}
+
+.panel-heading {
+
+	background-color: #a99cae;
+	border: 1px #a99cae;
+}

@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+<!DOCTYPE>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Employee Time Tracker App</title>
+    <title>Train Time</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
@@ -14,10 +15,12 @@
 <body>
     <div class="container">
         <div class="jumbotron text-center">
-            <h1>Any Time is Train Time!</h1>
-            <p>Choo Choo. Chee Chee.</p>
+        	<div class="train-text">
+            <h1 style="color: #fffcfcb0;">Any Time is Train Time!</h1>
+            <p class="tText">Hurry up! Your train is leaving!</p>
+          </div>
         </div>
-        <div class="panel panel-primary">
+        <div class="panel">
             <div class="panel-heading">Current Train Schedule</div>
             <table class="table table-hover" id="stationTable">
                 <thead>
@@ -43,7 +46,7 @@
                 </thead>
             </table>
         </div>
-        <div class="panel panel-primary">
+        <div class="panel">
             <div class="panel-heading">Add Train</div>
             <div class="panel-body">
                 <form>
