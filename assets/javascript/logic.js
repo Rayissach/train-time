@@ -1,6 +1,4 @@
-$(document).ready(function() {
-
-  // var queryURL = "http://transportapi.com/v3/us/places.json?query=euston&type=train_station&app_id=YOUR_APP_ID&app_key=70f975a928310d6f5167e5f4a255939e"
+// $(document).ready(function() {
 
     var config = {
         apiKey: "AIzaSyDi20WZXWiBqQAuLmSM-V0moDZ6mso27LU",
@@ -22,8 +20,8 @@ $(document).ready(function() {
 
         var name = $("#train-name").val().trim();
         var destination = $("#train-destination").val().trim();
-        // var time = moment($("#train-time").val().trim(), "DD/MM/YY").format("X");
-        var frequency = moment($("#train-interval").val().trim()).startOf('hour').fromNow(); 
+        var time = $("#train-time").val().trim();
+        var frequency = $("#train-interval").val().trim();
 
         database.ref().push({
 
@@ -40,6 +38,8 @@ $(document).ready(function() {
         $("#train-interval").val("");
     });
 
+
+
     database.ref().on("child_added", function(childSnapshot) {
         var cd = childSnapshot.val();
 
@@ -53,8 +53,35 @@ $(document).ready(function() {
         console.log(time);
         console.log(frequency);
 
-        // var startTime = moment.unix(time).format("MM/DD/YY");
-        // var nextArrival = moment(randomDate).format("HH:mm");
+
+          // CONVERTED TIMES USING MOMENT JS
+         //////////////////////////////////////////////////////////
+
+    var frequency = parseInt(frequency);
+
+    var currentTime = moment();
+
+
+    var subCon = moment(childSnapshot.val().time, "HH:mm").subtract(1, "years");
+
+    var timeArrival = moment(subCon).format("HH:mm");
+
+
+    var timeCon = moment(timeArrival, "HH:mm").subtract(1,"years");
+
+    var timeDiff = moment().diff(moment(timeCon), "minutes");
+
+
+    var timeRem = timeDiff % frequency;
+
+    var timeAway = frequency - timeRem;
+
+    var nextArrival = moment().add(timeAway, "minutes");
+
+    // var giveTrainArrival = moment(nextArrival).format("HH:mm");
+
+    //////////////////////////////////////////////////////////
+
 
         $("#stationTable > tbody").append(
             "<tr><td>" +
@@ -67,9 +94,14 @@ $(document).ready(function() {
             cd.frequency + 
             "</td>" + 
             "<td>" + 
-            cd.nextArrival+ 
-            "</td></tr>")
+            moment(nextArrival).format("HH:mm") + 
+            "</td>" +
+            "<td>" +
+            timeAway + " min away " 
+            +
+            "</td></tr>");
 
 
     });
-});
+   
+// });
