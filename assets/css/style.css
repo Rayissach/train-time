@@ -8,6 +8,7 @@ body {
  {
 	background: lightgrey;
 	opacity: 0.8;
+	border: 1px solid #5d88a08a;
 }
 
 .jumbotron {
@@ -23,4 +24,10 @@ body {
 
 	background-color: #a99cae;
 	border: 1px #a99cae;
+}
+
+#btns-add{
+
+	background-color: #5d88a0;
+	border-color: #5d88a0;
 }

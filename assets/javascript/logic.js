@@ -1,4 +1,3 @@
-// $(document).ready(function() {
 
     var config = {
         apiKey: "AIzaSyDi20WZXWiBqQAuLmSM-V0moDZ6mso27LU",
@@ -15,8 +14,6 @@
 
     $("#btns-add").on("click", function(event) {
         event.preventDefault();
-        // var randomTime = "04:45"
-        // randomFormat = "HH:mm"
 
         var name = $("#train-name").val().trim();
         var destination = $("#train-destination").val().trim();
@@ -67,7 +64,7 @@
     var timeArrival = moment(subCon).format("HH:mm");
 
 
-    var timeCon = moment(timeArrival, "HH:mm").subtract(1,"years");
+    var timeCon = moment(timeArrival, "HH:mm").subtract(1,"years"); 
 
     var timeDiff = moment().diff(moment(timeCon), "minutes");
 
@@ -104,4 +101,3 @@
 
     });
    
-// });
